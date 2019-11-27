@@ -19,10 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BackEnd\CommonCalls\Delete\" />
-    <Folder Include="BackEnd\CommonCalls\Create\" />
-    <Folder Include="BackEnd\CommonCalls\Update\" />
-    <Folder Include="BackEnd\CommonCalls\Retrieve\" />
     <Folder Include="GherkinFeatures\" />
     <Folder Include="Steps\" />
   </ItemGroup>

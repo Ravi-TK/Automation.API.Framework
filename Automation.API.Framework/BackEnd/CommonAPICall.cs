@@ -9,7 +9,6 @@ namespace Automation.API.Framework.BackEnd
 {
     public class CommonAPICall
     {
-
         public static void APICall(Method method)
         {
             IRestClient client = new RestClient();

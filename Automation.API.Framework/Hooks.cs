@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Automation.API.Framework.BackEnd;
+using Automation.Framework.Base;
+using Automation.Framework.Core;
 using TechTalk.SpecFlow;
+using Unity;
+using Unity.Lifetime;
 
 namespace Automation.API.Framework
 {
@@ -10,6 +11,12 @@ namespace Automation.API.Framework
     public sealed class Hooks
     {
         // For additional details on SpecFlow hooks see http://go.specflow.org/doc-hooks
+
+        public static void BeforeTestRun()
+        {
+            UnityContainerFactory.GetContainer().RegisterType<CommonPage>(new ContainerControlledLifetimeManager());
+            Driver.CreateLog("InE_Log ");
+        }
 
         [BeforeScenario]
         public void BeforeScenario()
