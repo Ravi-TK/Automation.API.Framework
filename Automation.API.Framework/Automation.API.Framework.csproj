@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Automation.Framework" Version="1.0.2.5" />
+    <PackageReference Include="ExtentReports.Core" Version="1.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
     <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
