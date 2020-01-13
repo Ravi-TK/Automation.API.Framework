@@ -1,2 +1,3 @@
 # Automation.API.Framework
-BDD API Automation Framework built on top of Specflow and RestSharp
+
+The Framework is an BDD approach to perform API Automation, built on top of Specflow and RestSharp. Download the project and add your tests feature in Gherkin folder and implement the setps in Steps Folder.  
