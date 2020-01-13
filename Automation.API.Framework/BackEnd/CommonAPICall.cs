@@ -9,24 +9,24 @@ namespace Automation.API.Framework.BackEnd
 {
     public class CommonAPICall
     {
-        public static void APICall(Method method)
+        /// <summary>
+        /// Executes the REST request
+        /// </summary>
+        /// <param name="method"> REST Call Type</param>
+        public static IRestResponse APICall(Method method, string endPoint, string queryBody = "", bool hasPermission = true)
         {
             IRestClient client = new RestClient();
-            // IRestRequest request = new RestRequest(BaseURLs.URL, method);
+            IRestRequest request = new RestRequest(BaseURLs.URL+endPoint, Method.GET);
 
-            IRestRequest request = new RestRequest("http://wcs-d-web01:44379/api/values", Method.GET);
-           // client.Authenticator = new SimpleAuthenticator("username", "SVC_D_AFS_SERVICE", "password", "ZEX317jlk953");
-            client.Authenticator=new NtlmAuthenticator("SVC_D_AFS_SERVICE", "ZEX317jlk953");
+            //adding bearer token
+            // request.AddHeader("Authorization", "");
 
-           // request.Credentials
-           // request.AddHeader("Authorization", "NTLM TlRMTVNTUAADAAAAGAAYAGoAAAAYABgAggAAAAAAAABIAAAAIgAiAEgAAAAAAAAAagAAAAAAAACaAAAABYKIogUBKAoAAAAPUwBWAEMAXwBEAF8AQQBGAFMAXwBTAEUAUgBWAEkAQwBFAEuMI/xeqYQwAAAAAAAAAAAAAAAAAAAAALvDrm70BEDj/Omt4tJZ2LBlulwQBUfaSg==");
+            //adding queryBody
+            if (!string.IsNullOrEmpty(queryBody))
+                request.AddParameter("undefined", queryBody, ParameterType.RequestBody);
 
             IRestResponse response = client.Execute(request);
-
-            Console.WriteLine((int)response.StatusCode);
-            int statusCode = (int)response.StatusCode;
-            Console.WriteLine(response.Content);
-
+            return response;
         }
     }
 }

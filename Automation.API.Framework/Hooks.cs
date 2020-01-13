@@ -45,6 +45,7 @@ namespace Automation.API.Framework
 
         }
 
+        [BeforeTestRun]
         public static void BeforeTestRun()
         {
             //Initialize Log File
@@ -54,9 +55,9 @@ namespace Automation.API.Framework
             reportInitalise();
 
             UnityContainerFactory.GetContainer().RegisterType<CommonPage>(new ContainerControlledLifetimeManager());
-            Driver.CreateLog("InE_Log ");
+            Driver.CreateLog("Logs");
 
-            Log.Information("");
+            Log.Information("******************************************");
             Log.Information("\nNew Test Cycle :");
         }
 
@@ -154,6 +155,9 @@ namespace Automation.API.Framework
         [AfterTestRun]
         public static void AfterTestRun()
         {
+            Log.Information("\n******************************************");
+            Log.Information("\nEnd of Test Cycle :");
+
             Log.CloseAndFlush();
             extent.Flush();
         }

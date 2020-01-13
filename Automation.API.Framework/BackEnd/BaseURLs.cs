@@ -1,47 +1,56 @@
 ﻿using Automation.Framework.Core;
+using Microsoft.Extensions.Configuration;
 
 namespace Automation.API.Framework.BackEnd
 {
     public class BaseURLs
-    {
+    { 
         public static string URL = "",tokenURL="";
         internal static void SetBaseUrl(Envirnoment testEnvironment = Envirnoment.SysTest)
         {
+            var config = new ConfigurationBuilder()
+                             .AddJsonFile("AppConfig.json")
+                             .Build();
+
             if (testEnvironment == Envirnoment.SysTest)
             {
-                URL = "";
+                URL = config["baseURLSysTest"];
             }
             else if (testEnvironment == Envirnoment.Dev)
             {
-                URL = "";
+                URL = config["baseURLDev"];
             }
             else if (testEnvironment == Envirnoment.UAT)
             {
-                URL = "";
+                URL = config["baseURLUAT"];
             }
             else if (testEnvironment == Envirnoment.Staging)
             {
-                URL = "";
+                URL = config["baseURLPreStaging"];
             }
         }
 
         internal static void SetTokenUrl(Envirnoment testEnvironment = Envirnoment.SysTest)
         {
+            var config = new ConfigurationBuilder()
+                             .AddJsonFile("AppConfig.json")
+                             .Build();
+
             if (testEnvironment == Envirnoment.SysTest)
             {
-                tokenURL = "";
+                tokenURL = config["tokenURLSysTest"];
             }
             else if (testEnvironment == Envirnoment.Dev)
             {
-                tokenURL = "http://wcs-d-web01:44379/api/values";
+                tokenURL = config["tokenURLDev"];
             }
             else if (testEnvironment == Envirnoment.UAT)
             {
-                tokenURL = "";
+                tokenURL = config["tokenURLUAT"];
             }
             else if (testEnvironment == Envirnoment.Staging)
             {
-                tokenURL = "";
+                tokenURL = config["tokenURLPreStaging"];
             }
         }
     }

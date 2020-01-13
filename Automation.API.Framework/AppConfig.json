@@ -1,0 +1,18 @@
+{
+
+  "baseURLDev": "",
+  "baseURLSysTest": "",
+  "baseURLUAT": "",
+  "baseURLPreStaging": "",
+
+  "DevDB": "",
+  "SysTestDB": "",
+  "UATDB": "",
+  "PreStagingDB": "",
+
+  "tokenURLDev": "",
+  "tokenURLSysTest": "",
+  "tokenURLUAT": "",
+  "tokenURLPreStaging": ""
+
+}

@@ -1,6 +1,6 @@
 ﻿using Automation.Framework.Core;
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Data.SqlClient;
 using System.Text;
 
@@ -13,10 +13,9 @@ namespace Automation.API.Framework.BackEnd
         /// </summary>
         /// <param name="SQLCommandLine">request query</param>
         /// <returns>Returns a long string with all row data, separated by '|'</returns>
-        public static string SQLGetSeperatedList(string SQLCommandLine)
+        public static ArrayList SQLGetSeperatedList(string SQLCommandLine)
         {
-
-            string CommaSeperatedUserList = "";
+            ArrayList List = new ArrayList();
             using (SqlConnection conn = new SqlConnection(DBConnectionStrings.DBConnectionStr))
             {
                 conn.Open();
@@ -25,10 +24,10 @@ namespace Automation.API.Framework.BackEnd
 
                 while (returnValue.Read())
                 {
-                    CommaSeperatedUserList = CommaSeperatedUserList + returnValue.GetValue(0) + ",";
+                    List.Add(returnValue.GetValue(0));
                 }
             }
-            return CommaSeperatedUserList;
+            return List;
         }
 
         /// <summary>
@@ -38,9 +37,10 @@ namespace Automation.API.Framework.BackEnd
         /// <returns>Returns a list of all records returned by query and each record 
         /// separated by '|'
         /// </returns>
-        public static string SQLGetCompleteRecord(string SQLCommandLine)
+        public static ArrayList SQLGetCompleteRecord(string SQLCommandLine)
         {
-            string CommaSeperatedUserList = "";
+            ArrayList List = new ArrayList();
+
             using (SqlConnection conn = new SqlConnection(DBConnectionStrings.DBConnectionStr))
             {
                 conn.Open();
@@ -51,11 +51,11 @@ namespace Automation.API.Framework.BackEnd
                 {
                     for (int i = 0; i < returnValue.FieldCount; i++)
                     {
-                        CommaSeperatedUserList = CommaSeperatedUserList + returnValue.GetValue(i) + ",";
+                        List.Add(returnValue.GetValue(i));
                     }
                 }
             }
-            return CommaSeperatedUserList;
+            return List;
         }
 
         /// <summary>
@@ -63,21 +63,11 @@ namespace Automation.API.Framework.BackEnd
         /// </summary>
         /// <param name="SQLCommandLine">Requested query</param>
         /// <returns>Returns GUID returned by query</returns>
-        public static string SQLGetSingleResult(string SQLCommandLine, bool KeyInteractionTable = false)
+        public static string SQLGetSingleResult(string SQLCommandLine)
         {
-            string singleResult, connString = "";
+            string singleResult;
 
-            if (KeyInteractionTable)
-            {
-                if (EnvirnomentConfig.TestEnvirnoment == Envirnoment.SysTest) connString = "Server=wcs-t-sssql1,65001; Database=KeyInteractionService; Trusted_Connection=True; MultipleActiveResultSets=True;Integrated Security=true;";
-                else if (EnvirnomentConfig.TestEnvirnoment == Envirnoment.Dev) connString = "Server=wcs-d-sssql1,65001; Database=KeyInteractionService; Trusted_Connection=True; MultipleActiveResultSets=True;Integrated Security=true;";
-                else if (EnvirnomentConfig.TestEnvirnoment == Envirnoment.UAT) connString = "";
-                else if (EnvirnomentConfig.TestEnvirnoment == Envirnoment.Staging) connString = "";
-            }
-            else
-                connString = DBConnectionStrings.DBConnectionStr;
-
-            using (SqlConnection conn = new SqlConnection(connString))
+            using (SqlConnection conn = new SqlConnection(DBConnectionStrings.DBConnectionStr))
             {
                 conn.Open();
                 SqlCommand insertcommand = new SqlCommand(SQLCommandLine, conn);
@@ -95,21 +85,11 @@ namespace Automation.API.Framework.BackEnd
         /// Execute a sql query 
         /// </summary>
         /// <param name="SQLCommandLine">Scalar query</param>
-        public static void ExecuteSQLCommand(string SQLCommandLine, bool KeyInteractionTable = false)
+        public static void ExecuteSQLCommand(string SQLCommandLine)
         {
-            string connString = "";
+             ;
 
-            if (KeyInteractionTable)
-            {
-                if (EnvirnomentConfig.TestEnvirnoment == Envirnoment.SysTest) connString = "Server=wcs-t-sssql1,65001; Database=KeyInteractionService; Trusted_Connection=True; MultipleActiveResultSets=True;Integrated Security=true;";
-                else if (EnvirnomentConfig.TestEnvirnoment == Envirnoment.Dev) connString = "Server=wcs-d-sssql1,65001; Database=KeyInteractionService; Trusted_Connection=True; MultipleActiveResultSets=True;Integrated Security=true;";
-                else if (EnvirnomentConfig.TestEnvirnoment == Envirnoment.UAT) connString = "";
-                else if (EnvirnomentConfig.TestEnvirnoment == Envirnoment.Staging) connString = "";
-            }
-            else
-                connString = DBConnectionStrings.DBConnectionStr;
-
-            using (SqlConnection conn = new SqlConnection(connString))
+            using (SqlConnection conn = new SqlConnection(DBConnectionStrings.DBConnectionStr))
             {
                 conn.Open();
                 SqlCommand insertcommand = new SqlCommand(SQLCommandLine, conn);

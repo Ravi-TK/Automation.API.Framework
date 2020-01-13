@@ -1,7 +1,5 @@
 ﻿using Automation.Framework.Core;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Microsoft.Extensions.Configuration;
 
 namespace Automation.API.Framework.BackEnd
 {
@@ -9,13 +7,21 @@ namespace Automation.API.Framework.BackEnd
     {
         public static string DBConnectionStr = "";
 
+        /// <summary>
+        /// Sets the database connection to the chosen environment 
+        /// </summary>
+        /// <param name="testEnvironment"></param>
         internal static void SetDBConnectionString(Envirnoment testEnvironment = Envirnoment.SysTest)
         {
-            if (testEnvironment == Envirnoment.SysTest) DBConnectionStr = "Server=wcs-t-sssql1,65001; Database=WescotIncomeExpenditure; Trusted_Connection=True; MultipleActiveResultSets=True;Integrated Security=true;";
-            else if (testEnvironment == Envirnoment.Dev) DBConnectionStr = "Server=wcs-d-sssql1,65001; Database=WescotIncomeExpenditure; Trusted_Connection=True; MultipleActiveResultSets=True;Integrated Security=true;";
-            else if (testEnvironment == Envirnoment.UAT) DBConnectionStr = "";
-            else if (testEnvironment == Envirnoment.Staging) DBConnectionStr = "";
-            else if (testEnvironment == Envirnoment.Live) DBConnectionStr = "";
+            var config = new ConfigurationBuilder()
+                          .AddJsonFile("AppConfig.json")
+                          .Build();
+
+            if (testEnvironment == Envirnoment.SysTest) DBConnectionStr = config["SysTestDB"];
+            else if (testEnvironment == Envirnoment.Dev) DBConnectionStr = config["DevDB"];
+            else if (testEnvironment == Envirnoment.UAT) DBConnectionStr = config["UATDB"];
+            else if (testEnvironment == Envirnoment.Staging) DBConnectionStr = config["PreStagingDB"];
+            //else if (testEnvironment == Envirnoment.Live) DBConnectionStr = config[""];
         }
     }
 }
