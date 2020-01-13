@@ -9,10 +9,10 @@ namespace Automation.API.Framework.BackEnd
     public class CommonDBCalls
     {
         /// <summary>
-        /// Retrieves a long string which has result of each record. each record values is separated by '|'
+        /// Retrieves a long string which has result of each record
         /// </summary>
         /// <param name="SQLCommandLine">request query</param>
-        /// <returns>Returns a long string with all row data, separated by '|'</returns>
+        /// <returns>Returns a list of all row data </returns>
         public static ArrayList SQLGetSeperatedList(string SQLCommandLine)
         {
             ArrayList List = new ArrayList();
@@ -34,8 +34,7 @@ namespace Automation.API.Framework.BackEnd
         /// Retrieves a list of all records returned by the query supplied
         /// </summary>
         /// <param name="SQLCommandLine">request query</param>
-        /// <returns>Returns a list of all records returned by query and each record 
-        /// separated by '|'
+        /// <returns>Returns a list of all records returned by query 
         /// </returns>
         public static ArrayList SQLGetCompleteRecord(string SQLCommandLine)
         {
