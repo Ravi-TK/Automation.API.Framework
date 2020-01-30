@@ -1,5 +1,4 @@
 {
-
   "baseURLDev": "",
   "baseURLSysTest": "",
   "baseURLUAT": "",
@@ -14,5 +13,4 @@
   "tokenURLSysTest": "",
   "tokenURLUAT": "",
   "tokenURLPreStaging": ""
-
 }

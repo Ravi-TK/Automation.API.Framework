@@ -11,8 +11,7 @@ namespace Automation.API.Framework.BackEnd.CommonCalls.Retrieve
         //example
         public static void getCustomer(int cusID)
         {
-            _commonPage.APIResponse = CommonAPICall.APICall(Method.GET,"/customer/"+cusID);
+            _commonPage.APIResponse = CommonAPICall.APICall(Method.GET, "/customer/" + cusID);
         }
-
     }
 }

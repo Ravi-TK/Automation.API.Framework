@@ -1,8 +1,5 @@
-﻿using Automation.Framework.Core;
-using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Data.SqlClient;
-using System.Text;
 
 namespace Automation.API.Framework.BackEnd
 {
@@ -34,7 +31,7 @@ namespace Automation.API.Framework.BackEnd
         /// Retrieves a list of all records returned by the query supplied
         /// </summary>
         /// <param name="SQLCommandLine">request query</param>
-        /// <returns>Returns a list of all records returned by query 
+        /// <returns>Returns a list of all records returned by query
         /// </returns>
         public static ArrayList SQLGetCompleteRecord(string SQLCommandLine)
         {
@@ -58,7 +55,7 @@ namespace Automation.API.Framework.BackEnd
         }
 
         /// <summary>
-        /// Retrieves a GUID 
+        /// Retrieves a GUID
         /// </summary>
         /// <param name="SQLCommandLine">Requested query</param>
         /// <returns>Returns GUID returned by query</returns>
@@ -81,12 +78,12 @@ namespace Automation.API.Framework.BackEnd
         }
 
         /// <summary>
-        /// Execute a sql query 
+        /// Execute a sql query
         /// </summary>
         /// <param name="SQLCommandLine">Scalar query</param>
         public static void ExecuteSQLCommand(string SQLCommandLine)
         {
-             ;
+            ;
 
             using (SqlConnection conn = new SqlConnection(DBConnectionStrings.DBConnectionStr))
             {
@@ -97,4 +94,3 @@ namespace Automation.API.Framework.BackEnd
         }
     }
 }
-

@@ -1,9 +1,4 @@
-﻿using Automation.Framework.Core;
-using RestSharp;
-using RestSharp.Authenticators;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using RestSharp;
 
 namespace Automation.API.Framework.BackEnd
 {
@@ -16,7 +11,7 @@ namespace Automation.API.Framework.BackEnd
         public static IRestResponse APICall(Method method, string endPoint, string queryBody = "", bool hasPermission = true)
         {
             IRestClient client = new RestClient();
-            IRestRequest request = new RestRequest(BaseURLs.URL+endPoint, Method.GET);
+            IRestRequest request = new RestRequest(BaseURLs.URL + endPoint, Method.GET);
 
             //adding bearer token
             // request.AddHeader("Authorization", "");

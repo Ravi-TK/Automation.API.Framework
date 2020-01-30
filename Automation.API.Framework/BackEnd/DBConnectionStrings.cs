@@ -8,7 +8,7 @@ namespace Automation.API.Framework.BackEnd
         public static string DBConnectionStr = "";
 
         /// <summary>
-        /// Sets the database connection to the chosen environment 
+        /// Sets the database connection to the chosen environment
         /// </summary>
         /// <param name="testEnvironment"></param>
         internal static void SetDBConnectionString(Envirnoment testEnvironment = Envirnoment.SysTest)

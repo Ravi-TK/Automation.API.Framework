@@ -2,7 +2,6 @@
 using RestSharp;
 using Unity;
 
-
 namespace Automation.API.Framework.BackEnd.CommonCalls.Delete
 {
     public class DeleteCalls
@@ -12,7 +11,7 @@ namespace Automation.API.Framework.BackEnd.CommonCalls.Delete
         //example
         public static void DeleteCustomer(int cusID)
         {
-            _commonPage.APIResponse = CommonAPICall.APICall(Method.DELETE,"\\customer\\"+cusID+"\\delete");
+            _commonPage.APIResponse = CommonAPICall.APICall(Method.DELETE, "\\customer\\" + cusID + "\\delete");
         }
     }
 }

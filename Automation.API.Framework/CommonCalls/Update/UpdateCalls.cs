@@ -3,7 +3,6 @@ using Automation.Framework.Base;
 using RestSharp;
 using Unity;
 
-
 namespace Automation.API.Framework.BackEnd.CommonCalls.Update
 {
     public class UpdateCalls
@@ -11,7 +10,7 @@ namespace Automation.API.Framework.BackEnd.CommonCalls.Update
         private static CommonPage _commonPage = UnityContainerFactory.GetContainer().Resolve<CommonPage>();
 
         //example
-        public static void UpdateCustomer(int cusId, string fname, string lname,int DateOfBirth)
+        public static void UpdateCustomer(int cusId, string fname, string lname, int DateOfBirth)
         {
             string queryBody;
 
@@ -21,7 +20,6 @@ namespace Automation.API.Framework.BackEnd.CommonCalls.Update
             cus.fname = fname;
             cus.lname = lname;
             cus.dob = DateOfBirth;
-
 
             queryBody = SimpleJson.SerializeObject(cus);
 

@@ -42,7 +42,6 @@ namespace Automation.API.Framework
 
             extent = new AventStack.ExtentReports.ExtentReports();
             extent.AttachReporter(htmlReporter);
-
         }
 
         [BeforeTestRun]
@@ -122,7 +121,6 @@ namespace Automation.API.Framework
             }
             else if (scenarioContext.TestError != null)
             {
-
                 if (stepType == "Given")
                 {
                     scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text).Fail("\n\n Message : " + scenarioContext.TestError.Message + "\n\nStack Trace :\n\n" + scenarioContext.TestError.StackTrace);

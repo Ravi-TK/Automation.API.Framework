@@ -4,8 +4,9 @@ using Microsoft.Extensions.Configuration;
 namespace Automation.API.Framework.BackEnd
 {
     public class BaseURLs
-    { 
-        public static string URL = "",tokenURL="";
+    {
+        public static string URL = "", tokenURL = "";
+
         internal static void SetBaseUrl(Envirnoment testEnvironment = Envirnoment.SysTest)
         {
             var config = new ConfigurationBuilder()

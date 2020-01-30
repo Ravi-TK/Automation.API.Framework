@@ -1,12 +1,11 @@
 ﻿using Automation.API.Framework.Models.RequestModel;
 using Automation.Framework.Base;
 using RestSharp;
-using System;
 using Unity;
 
 namespace Automation.API.Framework.BackEnd.CommonCalls.Create
 {
-    class CreateCalls
+    internal class CreateCalls
     {
         private static CommonPage _commonPage = UnityContainerFactory.GetContainer().Resolve<CommonPage>();
 
@@ -23,7 +22,7 @@ namespace Automation.API.Framework.BackEnd.CommonCalls.Create
 
             queryBody = SimpleJson.SerializeObject(cus);
 
-            _commonPage.APIResponse = CommonAPICall.APICall(Method.POST,"/createcustomer",queryBody);
+            _commonPage.APIResponse = CommonAPICall.APICall(Method.POST, "/createcustomer", queryBody);
         }
     }
 }

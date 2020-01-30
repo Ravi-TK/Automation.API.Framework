@@ -1,7 +1,4 @@
 ﻿using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Automation.API.Framework.BackEnd
 {
@@ -11,7 +8,7 @@ namespace Automation.API.Framework.BackEnd
         private string _token;
 
         /// <summary>
-        /// Bearer token to access the resource 
+        /// Bearer token to access the resource
         /// </summary>
         public string bearerToken
         {
@@ -20,7 +17,7 @@ namespace Automation.API.Framework.BackEnd
         }
 
         /// <summary>
-        /// Returns a new token 
+        /// Returns a new token
         /// </summary>
         /// <returns>Returns a new token</returns>
         public string GetBearerToken()
@@ -30,14 +27,13 @@ namespace Automation.API.Framework.BackEnd
         }
 
         /// <summary>
-        /// Generates a new token 
+        /// Generates a new token
         /// </summary>
         /// <returns></returns>
         private string GenerateBearerToken()
         {
-            //code to go here to generate bearer token 
+            //code to go here to generate bearer token
             return "";
         }
-
     }
 }
