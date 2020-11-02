@@ -4,6 +4,7 @@ using Automation.Framework.Core;
 using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
+using Microsoft.Extensions.Configuration;
 using Serilog;
 using System;
 using System.IO;
@@ -28,6 +29,16 @@ namespace Automation.API.Framework
             this.scenarioContext = ScenarioContext.Current;
         }
 
+        //clears screen shot folder before the test run 
+        private static void clearScreenShots()
+        {
+            string rootpath = Directory.GetCurrentDirectory();
+            string pathString = System.IO.Path.Combine(rootpath, "ScreenShots");
+            System.IO.DirectoryInfo ScreenShotdir = new System.IO.DirectoryInfo(pathString);
+            if (ScreenShotdir.Exists) ScreenShotdir.Delete(true);
+        }
+
+        
         private static void reportInitalise()
         {
             string rootpath = Directory.GetCurrentDirectory();
@@ -44,17 +55,50 @@ namespace Automation.API.Framework
             extent.AttachReporter(htmlReporter);
         }
 
-        [BeforeTestRun]
-        public static void BeforeTestRun()
+
+        public static void SetUp()
         {
+            var config = new ConfigurationBuilder()
+                            .AddJsonFile("AppConfig.json")
+                                .Build();
+
+            string environment = config["Environment"]; 
+
+            //clearing screen shots 
+            clearScreenShots();
+
+            //Setting test environment
+            if (environment.Equals("Dev"))
+                EnvirnomentConfig.setTestEnvirnoment(Envirnoment.Dev);
+            else if (environment.Equals("SysTest"))
+                EnvirnomentConfig.setTestEnvirnoment(Envirnoment.SysTest);
+            else if (environment.Equals("UAT"))
+                EnvirnomentConfig.setTestEnvirnoment(Envirnoment.UAT);
+            else if (environment.Equals("Staging"))
+                EnvirnomentConfig.setTestEnvirnoment(Envirnoment.Staging);
+
+            //Set Base URL for the APP
+            BaseURLs.SetBaseUrl(EnvirnomentConfig.TestEnvirnoment);
+
+            //Set DB Connection strings
+            DBConnectionStrings.SetDBConnectionString(EnvirnomentConfig.TestEnvirnoment);
+
             //Initialize Log File
-            Driver.CreateLog();
+            Driver.CreateLog("Logs ");
 
             //Initialize Reports
             reportInitalise();
 
+        }
+
+
+        [BeforeTestRun]
+        public static void BeforeTestRun()
+        {
+            SetUp();
+
+            //register pages
             UnityContainerFactory.GetContainer().RegisterType<CommonPage>(new ContainerControlledLifetimeManager());
-            Driver.CreateLog("Logs");
 
             Log.Information("******************************************");
             Log.Information("\nNew Test Cycle :");

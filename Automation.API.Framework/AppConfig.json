@@ -1,4 +1,11 @@
 {
+  "Environment": "SysTest",
+
+  //Dev
+  //SysTest
+  //UAT
+  //Staging
+
   "baseURLDev": "",
   "baseURLSysTest": "",
   "baseURLUAT": "",
